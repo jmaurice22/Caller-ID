@@ -11,14 +11,10 @@ input_value = str(input("Enter a phone number: "))
 # number object containing phone number string / must specify country code
 number = phonenumbers.parse(input_value, 'US')
 print(number)
-print(type(number))
 
 # example using international number
-# y = phonenumbers.parse("020 8366 1177", "GB")
-# print(y)
-
-# as dialled from GB, not a GB number z = phonenumbers.parse("00 1 650 253 2222", "GB")  
-#print(z)
+# int_number = phonenumbers.parse("020 8366 1177", "GB")
+# print(int_number)
 
 #  check if number is valid ( assigned ) 
 valid = phonenumbers.is_valid_number(number)
@@ -27,9 +23,9 @@ if valid:
     
 
 # check if number is possible ( ex. has right number of digits )
-possible = phonenumbers.is_possible_number(number)
-if possible:
-    print("Phone number is possible: ")
+# possible = phonenumbers.is_possible_number(number)
+# if possible:
+#    print("Phone number is possible")
 
 # formating the number 
 # national_format = phonenumbers.format_number(number,phonenumbers.PhoneNumberFormat.NATIONAL)
@@ -47,11 +43,12 @@ if possible:
 # for match in phonenumbers.PhoneNumberMatcher(text, 'US'):
 #    print(phonenumbers.format_number(match.number, phonenumbers.PhoneNumberFormat.E164))
  
-
 # get Carrier data (ex. name of carrier
-
-carrier = carrier.name_for_7number(number, 'en')
-print("Service provider: " + carrier)
+Carrier = carrier.name_for_number(number, 'en')
+if (Carrier):
+    print("Service provider: " + Carrier)
+if not (Carrier):
+    print("Provider unkmown")
 # Region data
 Region = geocoder.description_for_number(number, 'en')
 print("Region: " + Region)
